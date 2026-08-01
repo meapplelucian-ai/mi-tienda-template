@@ -3,10 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Tienda</title>
+  <title>Mi Tienda - San Antonio</title>
   <link rel="stylesheet" href="estilos.css">
   <!-- Script para la autenticación del panel -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    /* Estilo para colocar un fondo con collage e imitación difuminada/elegante de San Antonio */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      /* Fondo con un degradado semitransparente sobre una imagen representativa del puerto/mar de San Antonio */
+      background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), 
+                  url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      padding-top: 30px;
+      color: #1a365d;
+    }
+
+    .grid-productos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .tarjeta {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .tarjeta img {
+      max-width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #25d366;
+      color: white;
+      padding: 8px 15px;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .btn.deshabilitado {
+      background: #ccc;
+      pointer-events: none;
+    }
+
+    .seccion-terminos {
+      max-width: 800px; 
+      margin: 40px auto; 
+      padding: 25px; 
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border-top: 4px solid #1a365d; 
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
 
@@ -17,17 +90,17 @@
   <div style="text-align: center; margin: 40px 0;">
     <p>¿Tuviste algún problema o necesitas hacer válida tu garantía?</p>
     <a id="btn-ayuda-devolucion" href="#" target="_blank" 
-       style="background: #333; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">
+       style="background: #1a365d; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
        Ayuda > Devolución, garantía
     </a>
   </div>
 
   <!-- Sección de Términos y Condiciones Completa -->
-  <section style="max-width: 800px; margin: 40px auto; padding: 20px; font-family: sans-serif; color: #333; border-top: 1px solid #ddd; line-height: 1.6;">
+  <section class="seccion-terminos">
     <h2>Términos y Condiciones</h2>
     
     <h3>1. Identificación y Cobertura</h3>
-    <p>Nuestra tienda opera en Chile, realizando despachos y coordinaciones de entrega principalmente desde San Antonio hacia todo el país. Todos los canales oficiales de atención y venta se realizan a través de nuestra plataforma web y número de WhatsApp oficial.</p>
+    <p>Nuestra tienda opera en Chile, realizando despachos y coordinaciones de entrega desde San Antonio hacia todo el país a través de CorreosChile (con cobertura nacional a domicilio o sucursal). Todos los canales oficiales de atención y venta se realizan a través de nuestra plataforma web y número de WhatsApp oficial.</p>
 
     <h3>2. Proceso de Compra y Pago</h3>
     <p>La reserva de los productos y la gestión del despacho se realizan <strong>únicamente tras la confirmación del pago mediante transferencia bancaria</strong> y el envío del comprobante válido a través de nuestro canal de WhatsApp. De no enviarse el comprobante en un plazo prudente, el producto volverá a estar disponible en stock.</p>
