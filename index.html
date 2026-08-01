@@ -1,19 +1,19 @@
   <script>
     fetch('productos.json')
       .then(response => response.json())
-      .then(data => { // <-- Cambiamos "productos" por "data"
+      .then(data => {
         const contenedor = document.getElementById('contenedor-productos');
         contenedor.innerHTML = '';
 
-        // AQUÍ ESTÁ EL CAMBIO CLAVE: Le decimos que lea la lista que está dentro de "data.productos"
-        const productos = data.productos; 
+        // Detecta automáticamente si los productos están directos o dentro de una propiedad
+        const listaProductos = Array.isArray(data) ? data : (data.productos || data.items || []);
 
-        if (!productos || productos.length === 0) {
+        if (listaProductos.length === 0) {
           contenedor.innerHTML = '<p>No hay productos disponibles por el momento.</p>';
           return;
         }
 
-        productos.forEach(producto => {
+        listaProductos.forEach(producto => {
           const tarjeta = document.createElement('div');
           tarjeta.className = 'tarjeta-producto';
 
