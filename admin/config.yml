@@ -16,10 +16,14 @@ collections:
           - label: "Productos"
             name: "productos"
             widget: "list"
-            summary: '{{fields.nombre}} - ${{fields.precio}}'
-            fields:
-              - {label: "ID", name: "id", widget: "string"}
-              - {label: "Nombre", name: "nombre", widget: "string"}
-              - {label: "Precio CLP", name: "precio", widget: "number"}
-              - {label: "Stock", name: "stock", widget: "number"}
-              - {label: "Imagen del Producto", name: "imagen", widget: "image"}
+            field:
+              label: "Producto"
+              name: "producto"
+              widget: "object"
+
+              fields:
+                - {label: "ID", name: "id", widget: "string"}
+                - {label: "Nombre", name: "nombre", widget: "string"}
+                - {label: "Precio CLP", name: "precio", widget: "number"}
+                - {label: "Stock", name: "stock", widget: "number"}
+                - {label: "Imagen del Producto", name: "imagen", widget: "image"}
