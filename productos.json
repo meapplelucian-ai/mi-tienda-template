@@ -1,0 +1,9 @@
+[
+{
+"nombre": "Producto Ejemplo 1",
+"precio": 15000,
+"stock": 10,
+"imagen": "https://via.placeholder.com/200",
+"link_pago": "https://mpago.la/ejemplo"
+}
+]

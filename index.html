@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Tienda</title>
+<link rel="stylesheet" href="estilos.css">
+<!-- Script para la autenticación del panel -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<h1>Nuestros Productos</h1>
+<div id="contenedor-productos" class="grid-productos"></div>
+
+<script>
+// Carga automática de los datos que modifique el cliente
+fetch('/productos.json')
+.then(res => res.json())
+.then(productos => {
+const contenedor = document.getElementById('contenedor-productos');
+productos.forEach(prod => {
+// Si no hay stock, deshabilita el botón
+const agotado = prod.stock <= 0;
+contenedor.innerHTML += `
+<div class="tarjeta">
+<img src="${prod.imagen}" alt="${prod.nombre}">
+<h3>${prod.nombre}</h3>
+<p class="precio">$${prod.precio} CLP</p>
+<p>Stock disponible: ${prod.stock}</p>
+<a href="${prod.link_pago}"
+class="btn ${agotado ? 'deshabilitado' : ''}"
+target="_blank">
+${agotado ? 'Agotado' : 'Comprar Ahora'}
+</a>
+</div>
+`;
+});
+});
+</script>
+</body>
+</html>
