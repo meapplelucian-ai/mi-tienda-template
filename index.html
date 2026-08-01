@@ -1,33 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Tienda</title>
-  <link rel="stylesheet" href="estilos.css">
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-<body>
-
-  <header>
-    <h1>Mi Tienda</h1>
-    <a href="/admin/" class="btn-admin">Panel de Administración</a>
-  </header>
-
-  <main>
-    <section>
-      <h2>Catálogo de Productos</h2>
-      <div id="contenedor-productos" class="grid-productos"></div>
-    </section>
-  </main>
-
   <script>
-    // Carga los productos desde el archivo JSON generado por tu panel
     fetch('productos.json')
       .then(response => response.json())
-      .then(productos => {
+      .then(data => { // <-- Cambiamos "productos" por "data"
         const contenedor = document.getElementById('contenedor-productos');
         contenedor.innerHTML = '';
+
+        // AQUÍ ESTÁ EL CAMBIO CLAVE: Le decimos que lea la lista que está dentro de "data.productos"
+        const productos = data.productos; 
 
         if (!productos || productos.length === 0) {
           contenedor.innerHTML = '<p>No hay productos disponibles por el momento.</p>';
@@ -38,10 +17,7 @@
           const tarjeta = document.createElement('div');
           tarjeta.className = 'tarjeta-producto';
 
-          // Tu número de WhatsApp configurado
           let tuNumeroWhatsApp = "56922110348"; 
-
-          // Mensaje automático que toma el nombre del producto de tu panel
           let mensajeWhatsApp = encodeURIComponent("¡Hola! Quiero un/a " + producto.nombre + " por favor. ¿Te va quedando stock?");
 
           tarjeta.innerHTML = `
@@ -58,6 +34,3 @@
         console.error("Error al cargar los productos:", error);
       });
   </script>
-
-</body>
-</html>
