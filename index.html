@@ -17,9 +17,9 @@
 // Carga automática de los datos que modifique el cliente
 fetch('/productos.json')
 .then(res => res.json())
-.then(productos => {
+.then(data => {
 const contenedor = document.getElementById('contenedor-productos');
-productos.forEach(prod => {
+data.productos.forEach(prod => {
 // Si no hay stock, deshabilita el botón
 const agotado = prod.stock <= 0;
 contenedor.innerHTML += `
