@@ -10,17 +10,70 @@
 </head>
 <body>
 
+<!-- Botón temporal para abrir el formulario de dirección -->
+<div style="padding: 10px; background: #fff3f3; text-align: center;">
+  <button onclick="abrirModal()" style="padding: 10px 20px; background: #ff4747; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Añadir Dirección de Envío</button>
+</div>
+
+<!-- Modal de Dirección (4ta a 6ta Región de Chile) -->
+<div id="modal-direccion" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Añadir nueva dirección</h3>
+      <button onclick="cerrarModal()" class="btn-cerrar">&times;</button>
+    </div>
+
+    <form id="form-direccion">
+      <div class="campo-grupo">
+        <label>Región*</label>
+        <select id="select-region" class="input-estilo" onchange="actualizarComunas()" required>
+          <option value="" disabled selected>Selecciona tu región</option>
+          <option value="coquimbo">IV Región de Coquimbo</option>
+          <option value="valparaiso">V Región de Valparaíso</option>
+          <option value="ohiggins">VI Región del Libertador Gral. Bernardo O'Higgins</option>
+        </select>
+      </div>
+
+      <div class="campo-grupo">
+        <label>Comuna*</label>
+        <select id="select-comuna" class="input-estilo" required>
+          <option value="" disabled selected>Primero selecciona una región</option>
+        </select>
+      </div>
+
+      <h4 class="subtitulo-seccion">Información personal</h4>
+      <div class="fila-personal">
+        <input type="text" placeholder="Nombre de contacto*" class="input-estilo" required>
+        <div class="input-telefono">
+          <span class="prefijo">+56</span>
+          <input type="tel" placeholder="Teléfono móvil*" class="input-estilo" required>
+        </div>
+      </div>
+
+      <h4 class="subtitulo-seccion">Dirección</h4>
+      <div class="campo-grupo">
+        <input type="text" placeholder="Calle, número, depto/casa*" class="input-estilo" required>
+      </div>
+
+      <div class="modal-botones">
+        <button type="button" onclick="cerrarModal()" class="btn-secundario">Cancelar</button>
+        <button type="submit" class="btn-primario">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <h1>Nuestros Productos</h1>
 <div id="contenedor-productos" class="grid-productos"></div>
 
 <script>
-// Carga automática de los datos que modifique el cliente
+// Carga automática de los datos que modifique el cliente (Tu código original intacto)
 fetch('/productos.json')
 .then(res => res.json())
 .then(data => {
 const contenedor = document.getElementById('contenedor-productos');
 data.productos.forEach(prod => {
-// Si no hay stock, deshabilita el botón
+// Si no hay stock, desabilita el botón
 const agotado = prod.stock <= 0;
 contenedor.innerHTML += `
 <div class="tarjeta">
@@ -36,7 +89,58 @@ ${agotado ? 'Agotado' : 'Comprar Ahora'}
 </div>
 `;
 });
-});
+})
+.catch(err => console.log('Cargando productos...'));
+
+// Listado de comunas (4ta, 5ta y 6ta región)
+const comunasPorRegion = {
+  coquimbo: [
+    "La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paihuano", "Vicuña",
+    "Illapel", "Canela", "Los Vilos", "Salamanca",
+    "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado"
+  ],
+  valparaiso: [
+    "Valparaíso", "Casablanca", "Concón", "Juan Fernández", "Puchuncaví", "Quintero", "Viña del Mar",
+    "Isla de Pascua",
+    "Los Andes", "Calle Larga", "Rinconada", "San Esteban",
+    "La Ligua", "Cabildo", "Papudo", "Zapallar", "Petorca",
+    "Quillota", "Calera", "Hijuelas", "La Cruz", "Nogales",
+    "San Antonio", "Algarrobo", "Cartagena", "El Quisco", "El Tabo", "Santo Domingo",
+    "San Felipe", "Catemu", "Llaillay", "Panquehue", "Putaendo", "Santa María",
+    "Limache", "Quilpué", "Villa Alemana", "Olmué"
+  ],
+  ohiggins: [
+    "Rancagua", "Codegua", "Coinco", "Coltauco", "Doñihue", "Graneros", "Las Cabras", "Machalí", "Malloa", "Mostazal", "Olivar", "Peumo", "Pichidegua", "Quinta de Tilcoco", "Rengo", "Requínoa", "San Vicente",
+    "Pichilemu", "La Estrella", "Litueche", "Marchihue", "Navidad", "Paredones",
+    "San Fernando", "Chépica", "Chimbarongo", "Lolol", "Nancagua", "Palmilla", "Peralillo", "Placilla", "Pumanque", "Santa Cruz"
+  ]
+};
+
+function actualizarComunas() {
+  const regionSelect = document.getElementById('select-region');
+  const comunaSelect = document.getElementById('select-comuna');
+  const regionSeleccionada = regionSelect.value;
+
+  comunaSelect.innerHTML = '<option value="" disabled selected>Selecciona una comuna</option>';
+
+  if (comunasPorRegion[regionSeleccionada]) {
+    comunasPorRegion[regionSeleccionada].forEach(comuna => {
+      const option = document.createElement('option');
+      option.value = comuna;
+      option.textContent = comuna;
+      comunaSelect.appendChild(option);
+    });
+  }
+}
+
+function abrirModal() {
+  document.getElementById('modal-direccion').style.display = 'flex';
+}
+
+function cerrarModal() {
+  document.getElementById('modal-direccion').style.display = 'none';
+}
 </script>
+
 </body>
 </html>
