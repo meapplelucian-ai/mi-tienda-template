@@ -23,9 +23,14 @@
         // Si no hay stock, deshabilita el botón
         const agotado = prod.stock <= 0;
 
-        // Tu número de WhatsApp y mensaje automático tomando el nombre del producto
+        // Tu número de WhatsApp y mensaje automático actualizado
         const tuNumeroWhatsApp = "56922110348";
-        const mensajeWhatsApp = encodeURIComponent("¡Hola! Quiero un/a " + prod.nombre + " por favor. ¿Te va quedando stock?");
+        const mensajeWhatsApp = encodeURIComponent(
+          "Calle: \n" +
+          "Comuna: \n" +
+          "Región: \n\n" +
+          "¡Hola! Quiero un/a " + prod.nombre + " por favor. Aquí le envío el comprobante de la transferencia"
+        );
         const linkWhatsApp = `https://wa.me/${tuNumeroWhatsApp}?text=${mensajeWhatsApp}`;
 
         contenedor.innerHTML += `
