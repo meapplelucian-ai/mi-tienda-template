@@ -1,24 +1,26 @@
 backend:
-name: git-gateway
-branch: main
+  name: git-gateway
+  branch: main
 
 media_folder: "uploads"
 public_folder: "/uploads"
 
 collections:
-- name: "productos"
-label: "Productos"
-files:
-- file: "productos.json"
-label: "Lista de Productos"
-name: "lista_productos"
-fields:
-- label: "Productos"
-name: "productos"
-widget: "list"
-fields:
-- {label: "Nombre del Producto", name: "nombre", widget: "string"}
-- {label: "Precio (CLP)", name: "precio", widget: "number"}
-- {label: "Stock Disponible", name: "stock", widget: "number"}
-- {label: "Foto del Producto", name: "imagen", widget: "image"}
-- {label: "Link de Pago (Mercado Pago / Flow)", name: "link_pago", widget: "string"}
+  - name: "catalogo"
+    label: "Catálogo"
+    files:
+      - file: "productos.json"
+        label: "Lista de Productos"
+        name: "lista_productos"
+        fields:
+          - label: "Productos"
+            name: "productos"
+            widget: "list"
+            fields:
+              - {label: "ID", name: "id", widget: "string"}
+              - {label: "Nombre", name: "nombre", widget: "string"}
+              - {label: "Precio CLP", name: "precio", widget: "number"}
+              - {label: "Stock", name: "stock", widget: "number"}
+              - {label: "Imagen del Producto", name: "imagen", widget: "image"}
+
+
