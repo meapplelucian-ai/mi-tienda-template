@@ -8,25 +8,26 @@
   <!-- Script para la autenticación del panel -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
-    /* Estilo con collage y fondo de San Antonio corregido y reforzado */
+    /* Fondo con una imagen real de San Antonio alojada en Wikimedia Commons */
     body {
       margin: 0;
       padding: 0;
       font-family: sans-serif;
-      background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
-                        url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1920&q=80');
+      background-image: linear-gradient(rgba(15, 32, 39, 0.85), rgba(44, 83, 100, 0.85)), 
+                        url('https://upload.wikimedia.org/wikipedia/commons/e/e6/Puerto_de_San_Antonio%2C_Chile.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: #333;
+      min-height: 100vh;
     }
 
     h1 {
       text-align: center;
       padding-top: 30px;
-      color: #1a365d;
-      text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     }
 
     .grid-productos {
@@ -44,7 +45,7 @@
       padding: 15px;
       width: 220px;
       text-align: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     .tarjeta img {
@@ -76,8 +77,8 @@
       padding: 25px; 
       background: rgba(255, 255, 255, 0.96);
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      border-top: 4px solid #1a365d; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border-top: 4px solid #203a43; 
       line-height: 1.6;
     }
   </style>
@@ -89,9 +90,9 @@
 
   <!-- Sección de Ayuda para Devoluciones y Garantía -->
   <div style="text-align: center; margin: 40px 0;">
-    <p style="background: rgba(255,255,255,0.8); display: inline-block; padding: 5px 10px; border-radius: 4px; font-weight: bold;">¿Tuviste algún problema o necesitas hacer válida tu garantía?</p><br>
+    <p style="background: rgba(255,255,255,0.9); display: inline-block; padding: 5px 12px; border-radius: 4px; font-weight: bold; color: #1a365d;">¿Tuviste algún problema o necesitas hacer válida tu garantía?</p><br>
     <a id="btn-ayuda-devolucion" href="#" target="_blank" 
-       style="background: #1a365d; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+       style="background: #203a43; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); margin-top: 8px;">
        Ayuda > Devolución, garantía
     </a>
   </div>
