@@ -1,38 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Tienda</title>
+  <link rel="stylesheet" href="estilos.css">
+  <!-- Script para la autenticación del panel -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+  <h1>Nuestros Productos</h1>
+  <div id="contenedor-productos" class="grid-productos"></div>
+
   <script>
+    // Carga automática de los datos que modifique el cliente
     fetch('productos.json')
-      .then(response => response.json())
-      .then(data => {
-        const contenedor = document.getElementById('contenedor-productos');
-        contenedor.innerHTML = '';
+    .then(res => res.json())
+    .then(data => {
+      const contenedor = document.getElementById('contenedor-productos');
+      data.productos.forEach(prod => {
+        // Si no hay stock, deshabilita el botón
+        const agotado = prod.stock <= 0;
 
-        // Detecta automáticamente si los productos están directos o dentro de una propiedad
-        const listaProductos = Array.isArray(data) ? data : (data.productos || data.items || []);
+        // Tu número de WhatsApp y mensaje automático tomando el nombre del producto
+        const tuNumeroWhatsApp = "56922110348";
+        const mensajeWhatsApp = encodeURIComponent("¡Hola! Quiero un/a " + prod.nombre + " por favor. ¿Te va quedando stock?");
+        const linkWhatsApp = `https://wa.me/${tuNumeroWhatsApp}?text=${mensajeWhatsApp}`;
 
-        if (listaProductos.length === 0) {
-          contenedor.innerHTML = '<p>No hay productos disponibles por el momento.</p>';
-          return;
-        }
-
-        listaProductos.forEach(producto => {
-          const tarjeta = document.createElement('div');
-          tarjeta.className = 'tarjeta-producto';
-
-          let tuNumeroWhatsApp = "56922110348"; 
-          let mensajeWhatsApp = encodeURIComponent("¡Hola! Quiero un/a " + producto.nombre + " por favor. ¿Te va quedando stock?");
-
-          tarjeta.innerHTML = `
-            ${producto.imagen ? `<img src="${producto.imagen}" alt="${producto.nombre}" style="width:100%; max-height:150px; object-fit:contain;">` : ''}
-            <h3>${producto.nombre}</h3>
-            <p class="precio">$${producto.precio} CLP</p>
-            <p class="stock">Stock disponible: <strong>${producto.stock}</strong></p>
-            <a href="https://wa.me/${tuNumeroWhatsApp}?text=${mensajeWhatsApp}" target="_blank" class="btn-comprar">Comprar Ahora</a>
-          `;
-
-          contenedor.appendChild(tarjeta);
-        });
-      })
-      .catch(error => {
-        console.error("Error al cargar los productos:", error);
-        document.getElementById('contenedor-productos').innerHTML = '<p>Error al cargar el catálogo.</p>';
+        contenedor.innerHTML += `
+          <div class="tarjeta">
+            <img src="${prod.imagen}" alt="${prod.nombre}">
+            <h3>${prod.nombre}</h3>
+            <p class="precio">$${prod.precio} CLP</p>
+            <p>Stock disponible: ${prod.stock}</p>
+            <a href="${agotado ? '#' : linkWhatsApp}" 
+               class="btn ${agotado ? 'deshabilitado' : ''}" 
+               target="_blank">
+               ${agotado ? 'Agotado' : 'Comprar Ahora'}
+            </a>
+          </div>
+        `;
       });
+    });
   </script>
+
+</body>
+</html>
