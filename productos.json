@@ -3,8 +3,8 @@
     {
       "id": "cables-001",
       "nombre": "cable tipo c, somostel",
-      "precio": 6000,
-      "stock": 19,
+      "precio": 5000,
+      "stock": 10,
       "imagen": "https://www.comercialbenavides.net/data/images/prods/prod_26d993746f4920b8b8311032419ace88.jpg"
     },
     {
@@ -13,6 +13,13 @@
       "precio": 7500,
       "stock": 3,
       "imagen": "https://th.bing.com/th/id/OIP.zmCoupUqN-9fsqBC-hFqnwHaGx?w=214&h=196&c=7&r=0&o=7&pid=1.7&rm=3"
+    },
+    {
+      "id": "Cable-002",
+      "nombre": "Cable Micro usb/v8, somostel",
+      "precio": 5000,
+      "stock": 10,
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_820776-MLA106970641564_022026-O.webp"
     }
   ]
 }
