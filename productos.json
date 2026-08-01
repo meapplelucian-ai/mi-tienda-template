@@ -1,11 +1,18 @@
 {
   "productos": [
     {
-      "id": "001",
+      "id": "cables-001",
       "nombre": "cable",
       "precio": 6000,
       "stock": 20,
       "imagen": "https://www.comercialbenavides.net/data/images/prods/prod_26d993746f4920b8b8311032419ace88.jpg"
+    },
+    {
+      "id": "cajas-001",
+      "nombre": "caja tipo c, alternativo",
+      "precio": 7500,
+      "stock": 3,
+      "imagen": "https://th.bing.com/th/id/OIP.zmCoupUqN-9fsqBC-hFqnwHaGx?w=214&h=196&c=7&r=0&o=7&pid=1.7&rm=3"
     }
   ]
 }
