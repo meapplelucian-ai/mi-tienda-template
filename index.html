@@ -13,7 +13,23 @@
   <h1>Nuestros Productos</h1>
   <div id="contenedor-productos" class="grid-productos"></div>
 
+  <!-- Sección de Ayuda para Devoluciones y Garantía -->
+  <div style="text-align: center; margin: 40px 0;">
+    <p>¿Tuviste algún problema o necesitas hacer válida tu garantía?</p>
+    <a id="btn-ayuda-devolucion" href="#" target="_blank" 
+       style="background: #333; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">
+       Ayuda > Devolución, garantía
+    </a>
+  </div>
+
   <script>
+    // Configuración del botón de Ayuda / Devoluciones
+    const tuNumeroWhatsApp = "56922110348";
+    const mensajeAyuda = encodeURIComponent(
+      "Hola, necesito ayuda con una devolución o garantía de un producto. ¿Me podrían indicar los pasos a seguir?"
+    );
+    document.getElementById('btn-ayuda-devolucion').href = `https://wa.me/${tuNumeroWhatsApp}?text=${mensajeAyuda}`;
+
     // Carga automática de los datos que modifique el cliente
     fetch('productos.json')
     .then(res => res.json())
@@ -23,9 +39,11 @@
         // Si no hay stock, deshabilita el botón
         const agotado = prod.stock <= 0;
 
-        // Tu número de WhatsApp y mensaje automático actualizado
-        const tuNumeroWhatsApp = "56922110348";
+        // Mensaje automático de compra con datos de envío, nombre y RUT
         const mensajeWhatsApp = encodeURIComponent(
+          "Datos de envío:\n" +
+          "Nombre: \n" +
+          "RUT: \n" +
           "Calle: \n" +
           "Comuna: \n" +
           "Región: \n\n" +
@@ -33,19 +51,38 @@
         );
         const linkWhatsApp = `https://wa.me/${tuNumeroWhatsApp}?text=${mensajeWhatsApp}`;
 
-        contenedor.innerHTML += `
-          <div class="tarjeta">
-            <img src="${prod.imagen}" alt="${prod.nombre}">
-            <h3>${prod.nombre}</h3>
-            <p class="precio">$${prod.precio} CLP</p>
-            <p>Stock disponible: ${prod.stock}</p>
-            <a href="${agotado ? '#' : linkWhatsApp}" 
-               class="btn ${agotado ? 'deshabilitado' : ''}" 
-               target="_blank">
-               ${agotado ? 'Agotado' : 'Comprar Ahora'}
-            </a>
-          </div>
+        // Función que advierte al usuario antes de redirigirlo a WhatsApp
+        const manejarClickCompra = (e) => {
+          if (agotado) {
+            e.preventDefault();
+            return;
+          }
+          const confirmar = confirm("Al hacer clic, se abrirá WhatsApp con un mensaje predeterminado donde se te pedirán tus datos de envío, nombre y RUT para coordinar tu compra. ¿Deseas continuar?");
+          if (!confirmar) {
+            e.preventDefault();
+          }
+        };
+
+        // Creamos la tarjeta y le asignamos el evento de advertencia de manera dinámica
+        const tarjetaDiv = document.createElement('div');
+        tarjetaDiv.className = 'tarjeta';
+        tarjetaDiv.innerHTML = `
+          <img src="${prod.imagen}" alt="${prod.nombre}">
+          <h3>${prod.nombre}</h3>
+          <p class="precio">$${prod.precio} CLP</p>
+          <p>Stock disponible: ${prod.stock}</p>
+          <a href="${agotado ? '#' : linkWhatsApp}" 
+             class="btn ${agotado ? 'deshabilitado' : ''}" 
+             target="_blank">
+             ${agotado ? 'Agotado' : 'Comprar Ahora'}
+          </a>
         `;
+
+        // Añadimos el evento al botón recién creado
+        const boton = tarjetaDiv.querySelector('a');
+        boton.addEventListener('click', manejarClickCompra);
+
+        contenedor.appendChild(tarjetaDiv);
       });
     });
   </script>
