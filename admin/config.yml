@@ -6,30 +6,14 @@ media_folder: "uploads"
 public_folder: "/uploads"
 
 collections:
-  - name: "catalogo"
-    label: "Catálogo"
-    files:
-      - file: "productos.json"
-        label: "Lista de Productos"
-        name: "lista_productos"
-        fields:
-          - label: "Productos"
-            name: "productos"
-            widget: "list"
-            summary: "{{fields.nombre}}"
-            fields:
-              - label: "ID"
-                name: "id"
-                widget: "string"
-              - label: "Nombre"
-                name: "nombre"
-                widget: "string"
-              - label: "Precio CLP"
-                name: "precio"
-                widget: "number"
-              - label: "Stock"
-                name: "stock"
-                widget: "number"
-              - label: "Imagen del Producto"
-                name: "imagen"
-                widget: "image"
+  - name: "productos"
+    label: "Productos"
+    folder: "productos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "ID", name: "id", widget: "string"}
+      - {label: "Nombre", name: "nombre", widget: "string"}
+      - {label: "Precio CLP", name: "precio", widget: "number"}
+      - {label: "Stock", name: "stock", widget: "number"}
+      - {label: "Imagen del Producto", name: "imagen", widget: "image"}
