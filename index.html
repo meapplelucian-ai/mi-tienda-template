@@ -21,6 +21,7 @@
           let mensajeWhatsApp = encodeURIComponent("¡Hola! Quiero un/a " + producto.nombre + " por favor. ¿Te va quedando stock?");
 
           tarjeta.innerHTML = `
+            ${producto.imagen ? `<img src="${producto.imagen}" alt="${producto.nombre}" style="width:100%; max-height:150px; object-fit:contain;">` : ''}
             <h3>${producto.nombre}</h3>
             <p class="precio">$${producto.precio} CLP</p>
             <p class="stock">Stock disponible: <strong>${producto.stock}</strong></p>
@@ -32,5 +33,6 @@
       })
       .catch(error => {
         console.error("Error al cargar los productos:", error);
+        document.getElementById('contenedor-productos').innerHTML = '<p>Error al cargar el catálogo.</p>';
       });
   </script>
