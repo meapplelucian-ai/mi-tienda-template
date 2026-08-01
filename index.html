@@ -19,7 +19,7 @@ fetch('/productos.json')
 .then(res => res.json())
 .then(data => {
 const contenedor = document.getElementById('contenedor-productos');
-data.forEach(prod => {
+data.productos.forEach(prod => {
 // Si no hay stock, deshabilita el botón
 const agotado = prod.stock <= 0;
 contenedor.innerHTML += `
