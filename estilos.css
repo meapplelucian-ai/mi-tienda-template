@@ -1,7 +1,183 @@
-body { font-family: sans-serif; text-align: center; background: #f4f4f4; }
-.grid-productos { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-.tarjeta { background: white; padding: 20px; border-radius: 8px; width: 220px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.tarjeta img { width: 100%; border-radius: 4px; }
-.precio { font-weight: bold; color: #2e7d32; }
-.btn { display: inline-block; padding: 10px 15px; background: #009ee3; color: white; text-decoration: none; border-radius: 4px; }
-.btn.deshabilitado { background: #ccc; pointer-events: none; }
+/* --- ESTILOS GENERALES Y VARIABLES --- */
+:root {
+    --primary-color: #0f172a; /* Azul oscuro elegante */
+    --accent-color: #2563eb;  /* Azul profesional para botones */
+    --accent-hover: #1d4ed8;
+    --bg-color: #f8fafc;      /* Gris muy claro de fondo */
+    --card-bg: #ffffff;
+    --text-color: #334155;
+    --text-light: #64748b;
+    --border-color: #e2e8f0;
+    --radius: 10px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- BARRA SUPERIOR --- */
+.top-bar {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-size: 13px;
+    text-align: center;
+    padding: 8px 10px;
+    font-weight: 500;
+}
+
+/* --- ENCABEZADO --- */
+.main-header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.btn-cart {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.btn-cart:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+/* --- SECCIÓN HERO --- */
+.hero-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+}
+
+.hero-content h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 16px;
+    color: #94a3b8;
+    margin-bottom: 25px;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+/* --- SECCIÓN DE PRODUCTOS --- */
+.section-title {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.section-title h3 {
+    font-size: 24px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.section-title p {
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+/* Cuadrícula de productos adaptativa */
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+    padding-bottom: 60px;
+}
+
+/* Estilo estandarizado para las tarjetas de productos generadas */
+.productos-grid > div, 
+.producto-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 15px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.productos-grid > div:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+}
+
+/* --- PIE DE PÁGINA --- */
+.main-footer {
+    background: #ffffff;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+.footer-sub {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #94a3b8;
+}
